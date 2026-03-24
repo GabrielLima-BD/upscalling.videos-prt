@@ -4,9 +4,9 @@
 ![Licença](https://img.shields.io/badge/Licença-MIT-green)
 ![Status](https://img.shields.io/badge/Status-Em%20desenvolvimento-yellow)
 
-BotShopee é um projeto local em Python que automatiza a preparação de vídeos para envio ao Telegram a partir de um link de vídeo e de um link de produto da Shopee. O fluxo foi pensado para funcionar inteiramente no computador do usuário, com backend FastAPI, banco SQLite e interface web servida pelo próprio servidor local.
+BotShopee é um projeto local em Python que automatiza a preparação, o processamento e o envio de vídeos para o Telegram. O sistema foi desenhado para rodar de forma independente no computador do usuário, com backend FastAPI, banco SQLite e interface web servida pelo próprio servidor local ou por um executável empacotado para Windows.
 
-A aplicação baixa o vídeo, aplica um processamento padronizado com FFmpeg, tenta extrair nome e preço do produto e publica o resultado em um canal do Telegram. O painel também mantém um histórico visual dos envios, permitindo acompanhar status, erros e remoções com poucos cliques.
+A aplicação recebe links de vídeo e de referência, baixa o conteúdo, aplica um processamento padronizado com FFmpeg, tenta extrair nome e preço do produto e publica o resultado em um canal do Telegram. O painel também mantém um histórico visual dos envios, permitindo acompanhar status, erros, reprocessamentos e remoções com poucos cliques.
 
 > imagem em breve
 
@@ -25,7 +25,19 @@ A aplicação baixa o vídeo, aplica um processamento padronizado com FFmpeg, te
 - python-telegram-bot: envio assíncrono do arquivo para o Telegram.
 - pytest e pytest-asyncio: testes automatizados.
 
-## Como rodar
+## Como executar
+
+### Modo recomendado no Windows
+
+Se você já tiver o executável gerado, basta abrir:
+
+```text
+dist/UpscallingVideos.exe
+```
+
+Esse modo inicia o backend, abre o painel web e não exibe terminal para o usuário.
+
+### Modo de desenvolvimento
 
 1. Clone o repositório.
 2. Crie e ative um ambiente virtual.
@@ -35,14 +47,18 @@ A aplicação baixa o vídeo, aplica um processamento padronizado com FFmpeg, te
    pip install -r requirements.txt
    ```
 
-4. Copie o arquivo .env.exemplo para .env e preencha os valores.
+4. Copie `.env.exemplo` para `.env` e preencha os valores do Telegram.
 5. Inicie a aplicação:
 
    ```bash
    python backend/principal.py
    ```
 
-6. Abra o navegador em http://localhost:8000, caso ele não abra automaticamente.
+6. Acesse o painel em `http://127.0.0.1:8000`, caso ele não abra automaticamente.
+
+### Gerar o executável
+
+Para criar o executável único do projeto, use o processo de empacotamento definido no código-base e gere a build localmente. O executável final fica em `dist/UpscallingVideos.exe`.
 
 ## Estrutura do projeto
 
@@ -74,6 +90,8 @@ botshopee/
 │   │   └── estilos.css
 │   └── js/
 │       └── painel.js
+├── dist/
+│   └── UpscallingVideos.exe
 ├── videos/
 │   ├── originais/
 │   └── processados/
