@@ -106,13 +106,6 @@ botshopee/
 └── README.md
 ```
 
-## Como contribuir
-
-1. Crie uma branch para a sua alteração.
-2. Faça as mudanças seguindo o padrão de nomes e comentários em português.
-3. Garanta que os testes continuem passando.
-4. Abra um pull request com uma descrição clara do que foi alterado.
-
 ## Licença
 
 Projeto distribuído sob a licença MIT.
