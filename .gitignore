@@ -1,0 +1,12 @@
+.env
+*.db
+videos/originais/*
+videos/processados/*
+__pycache__/
+.pytest_cache/
+venv/
+*.pyc
+dist/
+Iniciacao/
+build/
+*.spec

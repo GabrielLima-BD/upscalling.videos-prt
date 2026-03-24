@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upscalling Videos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/estilos.css" />
+</head>
+<body>
+  <div class="fundo" aria-hidden="true"></div>
+  <div id="tela-encerramento" class="tela-encerramento" hidden>
+    <div class="tela-encerramento__card" role="status" aria-live="polite">
+      <span class="tela-encerramento__spinner" aria-hidden="true"></span>
+      <h2>Encerrando aplicação</h2>
+      <p id="texto-encerramento">Aguarde enquanto a sessão local é finalizada.</p>
+    </div>
+  </div>
+
+  <header class="cabecalho">
+    <div class="marca">
+      <div class="marca__icone">GB</div>
+      <div>
+        <h1>Upscalling Videos</h1>
+        <p>Sistema automatico de processamento de vídeos</p>
+      </div>
+    </div>
+
+    <div class="cabecalho__acoes">
+      <button type="button" class="botao-link botao-link--encerrar" id="botao-encerrar-app" aria-label="Encerrar aplicação e fechar a guia">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2.25a9.75 9.75 0 1 0 9.75 9.75A9.76 9.76 0 0 0 12 2.25Zm0 16.5a6.75 6.75 0 1 1 6.75-6.75A6.76 6.76 0 0 1 12 18.75Zm1.5-10.5h-3v6h3v-6Z"/>
+        </svg>
+        <span>Encerrar</span>
+      </button>
+
+      <div class="status-api" title="Status da API">
+        <span class="status-api__bolinha" id="indicador-api"></span>
+        <span id="texto-status-api">verificando...</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="painel">
+    <section class="card card--formulario">
+      <div class="card__cabecalho">
+        <h2>Processar vídeos em lote</h2>
+        <p>Monte até 50 itens, envie todos de uma vez e mantenha os campos preenchidos para reenviar apenas os erros.</p>
+      </div>
+
+      <form id="formulario-lote" class="formulario formulario--lote">
+        <div class="controle-lote">
+          <label>
+            <span>Quantidade de vídeos</span>
+            <input type="number" id="quantidade-videos" min="1" max="50" value="1" />
+          </label>
+
+          <label>
+            <span>Grupo ativo</span>
+            <select name="canal_destino" id="grupo-ativo" required>
+              <option value="1">Marli</option>
+              <option value="2">Gabriel</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="resumo-lote">
+          <strong id="contador-videos">1</strong>
+          <span>item(s) pronto(s) para envio</span>
+        </div>
+
+        <div class="faixa-status">
+          <span>As linhas são criadas automaticamente ao avançar com Enter ou ao sair do campo.</span>
+        </div>
+
+        <div id="lista-videos-formulario" class="lista-videos-formulario"></div>
+
+        <button type="submit" id="botao-enviar" class="botao-principal">
+          <span class="botao-principal__texto">Processar lote</span>
+          <span class="botao-principal__spinner" aria-hidden="true"></span>
+        </button>
+      </form>
+    </section>
+
+    <section class="card card--historico">
+      <div class="card__cabecalho card__cabecalho--linha">
+        <div>
+          <h2>Histórico completo</h2>
+          <p>Painel de histórico onde mostra a atualizacao dos processamentos.</p>
+        </div>
+        <button type="button" class="botao-secundario" id="botao-recarregar">Atualizar</button>
+      </div>
+
+      <div id="lista-historico" class="lista-historico" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="/js/painel.js" defer></script>
+</body>
+</html>
